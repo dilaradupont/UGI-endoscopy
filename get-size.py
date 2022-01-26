@@ -19,15 +19,18 @@ def get_size(image_list, df1, landmark):
     df_size = pd.DataFrame(list(zip(df1['Video file'], w, h)), columns =['Video file', 'Width', 'Height'])
     return df_size
 
-image_list, df1 = image_names_to_df(0, 999)
-df_size1 = get_size(image_list, df1, 'pylorus')
-image_list, df2 = image_names_to_df(999, 1763)
-df_size2 = get_size(image_list, df2, 'retroflex-stomach')
-image_list, df3 = image_names_to_df(1763, 2695)
-df_size3 = get_size(image_list, df3, 'z-line')
-df_size = pd.concat([df_size1, df_size2, df_size3], axis=0, join="outer")
-df_size.reset_index(drop=True, inplace=True)
-df_size.to_csv('test-files/image-size.csv')
+def main():
+    image_list, df1 = image_names_to_df(0, 999)
+    df_size1 = get_size(image_list, df1, 'pylorus')
+    image_list, df2 = image_names_to_df(999, 1763)
+    df_size2 = get_size(image_list, df2, 'retroflex-stomach')
+    image_list, df3 = image_names_to_df(1763, 2695)
+    df_size3 = get_size(image_list, df3, 'z-line')
+    df_size = pd.concat([df_size1, df_size2, df_size3], axis=0, join="outer")
+    df_size.reset_index(drop=True, inplace=True)
+    df_size.to_csv('test-files/image-size.csv')
 
+if __name__ == "__main__":
+    main()
 
 

@@ -11,11 +11,16 @@ def image_names_to_df(row1, row2):
 def get_size(image_list, df1, landmark):
     w = []
     h = []
+    lis1 = []
 
     for i in range(len(image_list)):
         im = Image.open(f'images/anatomical-landmarks/{landmark}/{image_list[i]}.jpg')
         w.append(im.size[0])
         h.append(im.size[1])
+        lis1.append(tuple([im.size[0], im.size[1]]))
+    print(len(lis1))
+    lis2 = list(set(lis1))
+    print(len(lis2))
     df_size = pd.DataFrame(list(zip(df1['Video file'], w, h)), columns =['Video file', 'Width', 'Height'])
     return df_size
 

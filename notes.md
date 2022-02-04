@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-   <img width="800" height="400" src=images/labelled-image-count-hyperkvasir-paper.png>
+   <img width="800" height="400" src=images/other/labelled-image-count-hyperkvasir-paper.png>
 </p>
 <p align="center">
 <strong>Figure. 1</strong>: Number of image labels from HyperKvasir paper.

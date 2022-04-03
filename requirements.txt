@@ -1,2 +1,8 @@
 pandas
 matplotlib
+pillow
+opencv-contrib-python
+numpy
+os
+skickit-image
+sklearn

@@ -1,16 +1,18 @@
 import cv2
-from moviepy.editor import *
+# from moviepy.editor import *
 
-STARTING_FRAME = 0
+STARTING_FRAME = 393
+IN_PATH = './videos/OGD_1.mov'
+OUT_PATH = '/home/dilara/UGI-endoscopy/video-split-images/video1-split'
 
-## Finding out the FPS - source: https://www.geeksforgeeks.org/moviepy-fps-of-video-file-clip/?ref=lbp
-clip = VideoFileClip('/Users/dilaradupont/Desktop/UCL/Year 3/UGI-endoscopy/OGD_1.mov').subclip(0, 5)
-rate = clip.fps
-print("FPS : " + str(rate)) 
+# ## Finding out the FPS - source: https://www.geeksforgeeks.org/moviepy-fps-of-video-file-clip/?ref=lbp
+# clip = VideoFileClip('/home/dilara/UGI-endoscopy/videos/OGD_1.mov').subclip(0, 5)
+# rate = clip.fps
+# print("FPS : " + str(rate)) 
 
 count = STARTING_FRAME
 ## Splitting the video into frames - source: https://techtutorialsx.com/2021/04/29/python-opencv-splitting-video-frames/
-video = cv2.VideoCapture('/Users/dilaradupont/Desktop/UCL/Year 3/UGI-endoscopy/OGD_1.mov')
+video = cv2.VideoCapture(IN_PATH)
 while(True):
     success, frame = video.read()
     if success:
@@ -19,6 +21,6 @@ while(True):
         break
     count +=1
     if count % 10 == 0:
-        cv2.imwrite(f'/Users/dilaradupont/Desktop/UCL/Year 3/UGI-endoscopy/video-split/frame_{count}.jpg', frame)
+        cv2.imwrite(f'./video-split-images/video1-split/frame_{count}.jpg', frame)
 
 video.release()

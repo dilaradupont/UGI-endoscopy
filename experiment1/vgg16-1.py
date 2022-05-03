@@ -189,9 +189,28 @@ def main():
                         metrics=['accuracy'])
     model.summary()
 
-    history = model.fit(pix_train, label_train, batch_size=64, epochs=10,
+    model_history = model.fit(pix_train, label_train, batch_size=64, epochs=10,
      validation_data=(pix_val, label_val))
-    plot_model_history(history)
+
+    # Plotting the Validation and Training Losses and Accuracy
+    fig, axs = plt.subplots(1,2,figsize=(15,5))
+    axs[0].plot(range(0,len(model_history.history['accuracy'])),\
+        model_history.history['accuracy'])
+    axs[0].plot(range(0,len(model_history.history['val_accuracy'])),\
+        model_history.history['val_accuracy'])
+    axs[0].set_title('Model Accuracy')
+    axs[0].set_ylabel('Accuracy')
+    axs[0].set_xlabel('Epoch')
+    axs[0].legend(['Training Accuracy', 'Validation Accuracy'], loc='best')
+    axs[1].plot(range(0,len(model_history.history['loss'])),\
+        model_history.history['loss'])
+    axs[1].plot(range(0, len(model_history.history['val_loss'])),\
+        model_history.history['val_loss'])
+    axs[1].set_title('Model Loss')
+    axs[1].set_ylabel('Loss')
+    axs[1].set_xlabel('Epoch')
+    axs[1].legend(['Training Loss', 'Validation Loss'], loc='best')
+    plt.show()
 
     # Evaluation of Performance with Validation Dataset
     label_predict = np.argmax(model.predict(pix_val), axis=1)

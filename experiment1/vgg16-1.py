@@ -182,7 +182,7 @@ def main():
     for layer in vgg.layers:
         layer.trainable = False
     x = Flatten()(vgg.output)
-    prediction = Dense(4, activation='softmax')(x)
+    prediction = Dense(len(CLASSES), activation='softmax')(x)
     model = Model(inputs=vgg.input, outputs=prediction)
     model.compile(loss='categorical_crossentropy',
                         optimizer='adam',
